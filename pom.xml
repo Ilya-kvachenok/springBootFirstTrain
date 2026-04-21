@@ -49,6 +49,13 @@
           <artifactId>jakarta.servlet-api</artifactId>
           <version>6.0.0</version>
       </dependency>
+
+      <!-- Lombok -->
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>1.18.44</version>
+      </dependency>
   </dependencies>
   <build>
     <finalName>trainSpr</finalName>
