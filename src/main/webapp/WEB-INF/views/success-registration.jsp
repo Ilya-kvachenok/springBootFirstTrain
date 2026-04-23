@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-Hello id = ${firstParam} and hi ${secondParam}
+Registration complete
+User ${user.firstName} ${user.lastName} with id ${user.id} created!
 </body>
 </html>

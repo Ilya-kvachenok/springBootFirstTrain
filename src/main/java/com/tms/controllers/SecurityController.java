@@ -26,27 +26,24 @@ public class SecurityController {
     @PostMapping("/registration")
     public ModelAndView hello(
             @RequestParam(value = "firstName") String firstName,
-            @RequestParam(value = "secondName") String secondName,
+            @RequestParam(value = "lastName") String lastName,
             @RequestParam(value = "age") int age,
+            @RequestParam(value = "email") String email,
             @RequestParam(value = "username") String username,
             @RequestParam(value = "password") String password,
                         ModelAndView model) {
 
-        Optional<UserDto> createdUserOptional = securityService.registration(firstName, secondName, age, username, password);
-
-        if (createdUserOptional.isPresent()) {
-            UserDto createdUser = createdUserOptional.get();
-            model.addObject("firstName", createdUser.getFirstName());
-            model.addObject("secondName", createdUser.getSecondName());
-            model.addObject("age", createdUser.getAge());
+        try {
+            UserDto createdUser = securityService.registration(firstName, lastName, age, username, password, email);
+            model.addObject("user", createdUser);
             model.setViewName("success-registration");
-            model.setStatus(HttpStatus.CREATED);
+            model.setStatus(HttpStatus.CREATED); // 201 CREATED
+            return model;
+        } catch (Exception exception) {
+            model.setViewName("error-registration");
+            model.addObject("exception", exception.getMessage());
+            model.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
             return model;
         }
-
-
-        model.setViewName("error-registration");
-        model.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-        return model;
     }
 }

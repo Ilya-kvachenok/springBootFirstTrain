@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-ERROR
+Sorry, registration was unsuccessful. Try again after 5 min...
+Issue description: ${exception}
 </body>
 </html>
