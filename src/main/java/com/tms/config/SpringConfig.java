@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-@EnableWebMvc // Включает доп настройки (interceptors etc...)
+@EnableWebMvc // Включает доп настройки (Interceptors, Validations etc...)
 @ComponentScan("com.tms") // вычитывай все отсюда
 @Configuration
 public class SpringConfig implements WebMvcConfigurer {
