@@ -1,5 +1,6 @@
 package com.tms.controllers;
 
+import com.tms.exceptions.AgeException;
 import com.tms.model.User;
 import com.tms.model.dto.RegistrationRequestDto;
 import com.tms.model.dto.UserDto;
@@ -32,7 +33,6 @@ public class SecurityController {
             @ModelAttribute @Valid RegistrationRequestDto registrationDto,
             BindingResult bindingResult,
             ModelAndView model) {
-        try {
             if (bindingResult.hasErrors()) {
                 System.out.println(bindingResult.getAllErrors());
                 model.addObject("exception", bindingResult.getAllErrors());
@@ -45,11 +45,6 @@ public class SecurityController {
             model.setViewName("success-registration");
             model.setStatus(HttpStatus.CREATED); // 201 CREATED
             return model;
-        } catch (Exception exception) {
-            model.setViewName("error-registration");
-            model.addObject("exception", exception.getMessage());
-            model.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-            return model;
-        }
     }
+
 }

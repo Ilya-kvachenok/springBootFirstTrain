@@ -1,5 +1,6 @@
 package com.tms.services;
 
+import com.tms.exceptions.AgeException;
 import com.tms.model.Role;
 import com.tms.model.Security;
 import com.tms.model.User;
@@ -28,7 +29,7 @@ public class SecurityService {
     }
 
 
-    public UserDto registration(RegistrationRequestDto registrationDto) {
+    public UserDto registration(RegistrationRequestDto registrationDto) throws AgeException {
         //1. Start transaction
         //2. Save user
         //3. Save security
@@ -38,6 +39,9 @@ public class SecurityService {
            User user = new User(); // Создали объекта пользователя и перенесли все данные из формы в этот объект
            user.setFirstName(registrationDto.getFirstName());
            user.setLastName(registrationDto.getLastName());
+           if (registrationDto.getAge() < 18) {
+               throw new AgeException();
+           }
            user.setAge(registrationDto.getAge());
            user.setEmail(registrationDto.getEmail());
            user.setCreated(LocalDateTime.now());
