@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-@EnableWebMvc // Включает доп настройки (Interceptors, Validations etc...)
+//@EnableWebMvc // Включает доп настройки (Interceptors, Validations etc...)
 @ComponentScan("com.tms") // вычитывай все отсюда
 @Configuration
 public class SpringConfig implements WebMvcConfigurer {
@@ -25,13 +25,5 @@ public class SpringConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(logInterceptor).addPathPatterns("/security/**"); // будет отрабатывать на все по этому пути
-    }
-
-    @Bean
-    public InternalResourceViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/views/"); // поставит перед
-        viewResolver.setSuffix(".jsp"); // поставит после
-        return viewResolver;
     }
 }
